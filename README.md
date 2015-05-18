@@ -25,4 +25,4 @@ Directions:
 
 3.) Navigate to the "/tests" directory
 
-4.) Run the unit tests with the shell command 'phpunit filemgrtests'
+4.) Run the unit tests with the shell command 'phpunit myfilemgrtests'
