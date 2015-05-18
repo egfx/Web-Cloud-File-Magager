@@ -1,0 +1,80 @@
+body {
+
+    padding: 5px 0;
+
+}
+
+.warning {
+
+    color: #900;
+
+}
+
+.spanLabel {
+
+    padding-bottom: 1em;
+    display: block;
+    font-size: 0.8em;
+
+}
+
+.fullwidth {
+
+    width: 100%;
+
+}
+
+#items {
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+}
+
+#items .row {
+
+    padding: 10px 0;
+    border-bottom: dashed 1px #aaa;
+
+}
+
+#items .row input {
+
+    margin-bottom: 0;
+
+}
+
+#items .row.done {
+
+    background-color: #eee;
+    font-style: italic;
+    color: #aaa;
+
+}
+
+.flr {
+
+    float: right;
+
+}
+
+.big-icon {
+    font-size: 220px;
+    color: lightcyan;
+}
+
+.icon-text-overlay {
+    display:block; 
+    margin-top: -140px;
+    margin-bottom: 75px;
+    font-size: 55px;
+    font-family:"Helvetica Neue", sans-serif;
+    line-height: 1.2;
+    -webkit-font-smoothing: antialiased;
+    color: rgb(95, 120, 131);
+}
+
+.file-label{
+    color: darkblue;
+}

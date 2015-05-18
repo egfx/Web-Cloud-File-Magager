@@ -1,0 +1,11 @@
+RewriteEngine Off
+
+# TODO: Link to index and access files directly, fix -->
+
+# if the request is for /archive..
+# RewriteCond %{REQUEST_URI} ^\/archive\/
+# and the request is not for a file
+# RewriteCond %{REQUEST_FILENAME} !-f
+
+# send to index.php
+# RewriteRule .* index.php [L]
