@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../src/filelist.php';
 
-class myTest extends PHPUnit_Framework_TestCase {
+class myFileMgrTests extends PHPUnit_Framework_TestCase {
 
 	function setup(){
 		$this->filelist = new Filelist();
