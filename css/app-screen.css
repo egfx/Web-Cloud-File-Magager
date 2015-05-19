@@ -78,3 +78,7 @@ body {
 .file-label{
     color: darkblue;
 }
+
+.hint-top, .hint-bottom, .hint-left, .hint-right {
+    position: absolute;
+}
