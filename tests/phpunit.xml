@@ -1,4 +1,4 @@
-<phpunit bootstrap="..\src\autoload.php">
+<phpunit bootstrap="../src/autoload.php">
   <testsuites>
     <testsuite name="CloutFileMgrTests1">
       <directory>tests</directory>
