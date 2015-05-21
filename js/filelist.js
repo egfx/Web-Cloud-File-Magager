@@ -2,7 +2,7 @@
 
 angular.module('CloutFileManager', [])
 .value('pointer', 0)
-.controller('FileListController', ['$scope', '$http', '$log', 'pointer', function($scope, $http, $log, pointer) {
+.controller('FileListController', ['$scope', '$http', '$log', '$filter', 'pointer', function($scope, $http, $log, $filter, pointer) {
 
     // syncs to app folder IDs
     $scope.getItem = ['uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'dies', 'once', 'dose', 'trece', 'catorce', 'quince', 'diesiseis'];
@@ -17,9 +17,7 @@ angular.module('CloutFileManager', [])
                     $scope.seperator = data.seperator;
                     $scope.dir = data.filepath + $scope.seperator;
                     $scope.items = data.items,
-                        $scope.items.concat($scope.items.splice(0,2));
-                    
-                     // Arrange items in cell grid 
+                        $scope.items.concat($scope.items.splice(0,2)); 
                     $scope.rows = [];
                     var size = Math.ceil($scope.items.length /3);
                     for (var i=0; i<$scope.items.length; i+=size) {
@@ -29,9 +27,7 @@ angular.module('CloutFileManager', [])
                             var extra = angular.copy($scope.rows[0][3]);
                             $scope.rows[0] = $scope.rows[0].slice(0,3);
                         }
-                    }; 
-                    $scope.rows.push(new Array(extra));
-                
+                    }; $scope.rows.push(new Array(extra));
                 }
             })
             .error(function(data, status, headers, config) {
@@ -41,6 +37,9 @@ angular.module('CloutFileManager', [])
     
     // execute
     $scope.select();
+
+    // search
+    $scope.query = '';
 
     $scope.goToDir = function(dir, idx){
         var index = $scope.items.map(function(el){
