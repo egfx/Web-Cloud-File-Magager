@@ -28,7 +28,7 @@
             marginTopIncrement: 50,                     // If margin-top-adjust is "true", the absolute value of the increment of margin-top per row
             animationSpeed: 200,                        // Time (in ms) for transitions
             URLrewrite: true,                           // Use URL rewriting?
-            URLbase: "/iClout-File-Magager/",                       // If URL rewrite is enabled, the URL base of the page where used. Example (include double-quotes): "/services/"
+            URLbase: window.location.pathname,                       // If URL rewrite is enabled, the URL base of the page where used. Example (include double-quotes): "/services/"
             internalLinkSelector: ".jaf-internal a"     // a jQuery selector containing links to content within a jQuery App Folder
         });
     });
@@ -49,11 +49,12 @@
             <!-- folder-rows -->
             <div ng-repeat="(this, row) in rows" class="jaf-row jaf-container">
                 <div ng-if="$first" class="folder">
-                    <a href="/test" target="_self" ng-click="gohome()"><img class="app-icon" ng-src="images/icon-directory.png"></a>
+                    <a href="{{path.pathname}}" target="_self" ng-click="gohome()"><img class="app-icon" ng-src="images/icon-directory.png"></a>
                     <p><b>HOME</b></p>
                 </div>
                 <div ng-repeat="item in row" tooltip data-direction="top" class="folder" id="getItem[$index]">
-                    <a href="#"><img class="app-icon" ng-src="images/icon-{{item.extension}}.png"><span data-hint="{{item.file}}" class="hint-top"></span></a>
+                    <div ng-click="goToDir(item, $index)" ng-if="item.extension == 'directory'"><img class="app-icon" ng-src="images/icon-{{item.extension}}.png"><span data-hint="{{item.file}}" class="hint-top"></span></div>
+                    <div ng-if="item.extension != 'directory'" data-test="{{item.extension}}"><a href="{{currentpath}}{{item.file}}"><img class="app-icon" ng-src="images/icon-{{item.extension}}.png"><span data-hint="{{item.file}}" class="hint-top"></span></a></div>
                 </div>
             <br class="clear">
             </div>
@@ -67,7 +68,7 @@
 </div>
 <!--End app-folders-container-->
 
-<!-- the search area outside of the phone shell -->
+<!-- The search area outside of the phone shell -->
 <div class="row">
     <div class="column">
         <h1>Search</h1>

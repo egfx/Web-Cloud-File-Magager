@@ -7,7 +7,9 @@ try {
 	$filelist = new Filelist();
 
     $pointer = intval($_GET['pointer']);
-    $path = $filelist->getDirectoryTreeAtPointer($pointer);
+    $path = $_GET['path'];
+
+    $path = (is_dir($path)) ? $path : $filelist->getDirectoryTreeAtPointer($pointer);
 
     $files = $filelist->getDirectoryContents($path);
 
@@ -22,8 +24,10 @@ try {
 
     echo json_encode(array(
         'error' => false,
+        'index' => $pointer,
         'items' => $result,
-        'index' => $pointer
+        'filepath' => $path,
+        'seperator' => DIRECTORY_SEPARATOR
     ), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
 
 } catch(Exception $e) {

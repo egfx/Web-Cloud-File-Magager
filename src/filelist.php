@@ -23,7 +23,7 @@ class Filelist {
 	}
 
 	function getDirectoryTreeAtPointer($pointer){
-		$dirs = $this->getDirectoryTree($this->dir);
+		$dirs = $this->getDirectoryTree();
 		return $dirs[$pointer];
 	}
 

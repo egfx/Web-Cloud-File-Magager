@@ -59,6 +59,10 @@ body {
 
 }
 
+.app-icon {
+    cursor: pointer;
+}
+
 .big-icon {
     font-size: 220px;
     color: lightcyan;

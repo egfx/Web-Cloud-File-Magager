@@ -2,19 +2,6 @@
 
 angular.module('CloutFileManager', [])
 .value('pointer', 0)
-.config(['$locationProvider', function($locationProvider){
-    $locationProvider.html5Mode(true);
-}])
-.filter('look', function() {
-  return function(arr, start, end) {
-    return (arr || []).slice(start, end);
-  };
-})
-.factory('data', ['$log', function($log){
-    return {
-        //
-    }
-}])
 .controller('FileListController', ['$scope', '$http', '$log', 'pointer', function($scope, $http, $log, pointer) {
 
     // syncs to app folder IDs
@@ -22,10 +9,13 @@ angular.module('CloutFileManager', [])
 
     var urlSelect = '.../../src/parser.php?pointer=' + pointer;
 
-    $scope.select = function() {
-        $http.get(urlSelect)
+    $scope.select = function(segment) {
+        var path = (segment) ? '&path=' + segment : '&path=';
+        $http.get(urlSelect + path)
             .success(function(data) {  
                 if (data.items){
+                    $scope.seperator = data.seperator;
+                    $scope.dir = data.filepath + $scope.seperator;
                     $scope.items = data.items,
                         $scope.items.concat($scope.items.splice(0,2));
                     
@@ -52,8 +42,16 @@ angular.module('CloutFileManager', [])
     // execute
     $scope.select();
 
-    $scope.goToDir = function(dir){
-        //TODO: Go to specified directory
+    $scope.goToDir = function(dir, idx){
+        var index = $scope.items.map(function(el){
+            return el.file;
+        }).indexOf(dir.file);
+        $scope.select($scope.dir + $scope.items[index].file);
+        $scope.currentpath = $scope.setCurrentDir($scope.items[index].file);
+    }
+
+    $scope.setCurrentDir = function(path){
+        return path + $scope.seperator;
     }
 
 }])
@@ -79,4 +77,7 @@ angular.module('CloutFileManager', [])
             });
         }
     }
-});
+})
+.run(['$window', '$rootScope', function($window, $rootScope){
+    $rootScope.path = $window.location;
+}]);
