@@ -11,12 +11,14 @@
     <link href="css/ios-style.css" rel="stylesheet" media="screen">
     <link href="css/tooltip.min.css" rel="stylesheet" media="screen">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.7.0/lodash.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
     <script src="js/jquery.app-folders.js"></script>
     <script src="js/filelist.js"></script>
 </head>
 <body ng-controller="FileListController">
 
+<!-- Start app-folders -->
 <script>
     $(function() {
         $('.app-folders-container').appFolders({
@@ -26,12 +28,13 @@
             marginTopIncrement: 50,                     // If margin-top-adjust is "true", the absolute value of the increment of margin-top per row
             animationSpeed: 200,                        // Time (in ms) for transitions
             URLrewrite: true,                           // Use URL rewriting?
-            URLbase: "/",                       // If URL rewrite is enabled, the URL base of the page where used. Example (include double-quotes): "/services/"
+            URLbase: "/iClout-File-Magager/",                       // If URL rewrite is enabled, the URL base of the page where used. Example (include double-quotes): "/services/"
             internalLinkSelector: ".jaf-internal a"     // a jQuery selector containing links to content within a jQuery App Folder
         });
     });
 </script>
 
+<!-- Heading -->
 <div class="row">
     <div class="twelve columns text-center"><br />
         <i class="fa fa-5x fa-cloud big-icon"><span class="icon-text-overlay">iClout</span></i>
@@ -43,114 +46,46 @@
     <div class="iphone-positioner">
         <div class="app-folders-container">
             
-            <!-- jaf-row 1 -->
-            <div class="jaf-row jaf-container">
-                <div class="folder">
-                    <a href="#" ng-click="gohome()"><img class="app-icon" ng-src="images/icon-directory.png"></a>
+            <!-- folder-rows -->
+            <div ng-repeat="(this, row) in rows" class="jaf-row jaf-container">
+                <div ng-if="$first" class="folder">
+                    <a href="/test" target="_self" ng-click="gohome()"><img class="app-icon" ng-src="images/icon-directory.png"></a>
                     <p><b>HOME</b></p>
                 </div>
-                <div tooltip data-direction="top" ng-init="$index=2" ng-if="items.length>2" class="folder" id="getItem[$index]">
-                    <a href="#"><img class="app-icon" ng-src="images/icon-{{items[$index].extension}}.png"><span data-hint="{{items[$index].file}}" class="hint-top"></span></a>
-                </div>
-                <div tooltip data-direction="top" ng-init="$index=3" ng-if="items.length>3" class="folder" id="getItem[$index]">
-                    <a href="#"><img class="app-icon" ng-src="images/icon-{{items[$index].extension + '.png'}}"><span data-hint="{{items[$index].file}}" class="hint-top"></span></a>
-                </div>
-                <div tooltip data-direction="top" ng-init="$index=4" ng-if="items.length>4" class="folder" id="getItem[$index]">
-                    <a href="#"><img class="app-icon" ng-src="images/icon-{{items[$index].extension}}.png"><span data-hint="{{items[$index].file}}" class="hint-top"></span></a>
+                <div ng-repeat="item in row" tooltip data-direction="top" class="folder" id="getItem[$index]">
+                    <a href="#"><img class="app-icon" ng-src="images/icon-{{item.extension}}.png"><span data-hint="{{item.file}}" class="hint-top"></span></a>
                 </div>
             <br class="clear">
             </div>
-            <!-- END jaf-row 1 -->
+            <!-- END folder-rows -->
             
-            <!-- jaf-row 2 -->
-            <div class="jaf-row jaf-container">
-                <div tooltip data-direction="top" ng-init="$index=5" ng-if="items.length>5" class="folder" id="getItem[$index]">
-                    <a href="#"><img class="app-icon" ng-src="images/icon-{{items[$index].extension}}.png"><span data-hint="{{items[$index].file}}" class="hint-top"></span></a>
-                </div>
-                <div tooltip data-direction="bottom" ng-init="$index=6" ng-if="items.length>6" class="folder" id="getItem[$index]">
-                    <a href="#"><img class="app-icon" ng-src="images/icon-{{items[$index].extension}}.png"><span data-hint="{{items[$index].file}}" class="hint-bottom"></span></a>
-                </div>
-                <div tooltip data-direction="top" ng-init="$index=7" ng-if="items.length>7" class="folder" id="getItem[$index]">
-                    <a href="#"><img class="app-icon" ng-src="images/icon-{{items[$index].extension}}.png"><span data-hint="{{items[$index].file}}" class="hint-top"></span></a>
-                </div>
-                <div tooltip data-direction="bottom" ng-init="$index=8" ng-if="items.length>8" class="folder" id="getItem[$index]">
-                    <a href="#"><img class="app-icon" ng-src="images/icon-{{items[$index].extension}}.png"><span data-hint="{{items[$index].file}}" class="hint-bottom"></span></a>
-                </div>
+            <!-- bottom phone screen padding -->
             <br class="clear">
-            </div>
 
-            <!-- END jaf-row 2 -->
-
-            <!-- jaf-row 3 -->
-            <div class="jaf-row jaf-container">
-                <div tooltip data-direction="bottom" ng-init="$index=9" ng-if="items.length>9" class="folder" id="getItem[$index]">
-                    <a href="#"><img class="app-icon" ng-src="images/icon-{{items[$index].extension}}.png"><span data-hint="{{items[$index].file}}" class="hint-bottom"></span></a>
-                </div>
-                <div tooltip data-direction="bottom" ng-init="$index=10" ng-if="items.length>10" class="folder" id="getItem[$index]">
-                    <a href="#"><img class="app-icon" ng-src="images/icon-{{items[$index].extension}}.png"><span data-hint="{{items[$index].file}}" class="hint-bottom"></span></a>
-                </div>
-                <div tooltip data-direction="top" ng-init="$index=11" ng-if="items.length>11" class="folder" id="getItem[$index]">
-                    <a href="#"><img class="app-icon" ng-src="images/icon-{{items[$index].extension}}.png"><span data-hint="{{items[$index].file}}" class="hint-top"></span></a>
-                </div>
-                <div tooltip data-direction="top" ng-init="$index=12" ng-if="items.length>12" class="folder" id="getItem[$index]">
-                    <a href="#"><img class="app-icon" ng-src="images/icon-{{items[$index].extension}}.png"><span data-hint="{{items[$index].file}}" class="hint-top"></span></a>
-                </div>
-            <br class="clear">
-            </div>
-            <!-- END jaf-row 3 -->
-
-            <!-- jaf-row 4 -->
-            <div class="jaf-row jaf-container">
-                <div tooltip data-direction="bottom" ng-init="$index=13" ng-if="items.length>13" class="folder" id="getItem[$index]">
-                    <a href="#"><img class="app-icon" ng-src="images/icon-{{items[$index].extension}}.png"><span data-hint="{{items[$index].file}}" class="hint-bottom"></span></a>
-                </div>
-                <div tooltip data-direction="bottom" ng-init="$index=14" ng-if="items.length>14" class="folder" id="getItem[$index]">
-                    <a href="#"><img class="app-icon" ng-src="images/icon-{{items[$index].extension}}.png"><span data-hint="{{items[$index].file}}" class="hint-bottom"></span></a>
-                </div>
-                <div tooltip data-direction="top" ng-init="$index=15" ng-if="items.length>15" class="folder" id="getItem[$index]">
-                    <a href="#"><img class="app-icon" ng-src="images/icon-{{items[$index].extension}}.png"><span data-hint="{{items[$index].file}}" class="hint-top"></span></a>
-                </div>
-                <div tooltip data-direction="bottom" ng-init="$index=16" ng-if="items.length>16" class="folder" id="getItem[$index]">
-                    <a href="#"><img class="app-icon" ng-src="images/icon-{{items[$index].extension}}.png"><span data-hint="{{items[$index].file}}" class="hint-bottom"></span></a>
-                </div>
-            <br class="clear">
-            </div>
-            <!-- END jaf-row 4 -->
-            <br class="clear">
         </div>
     </div>
 </div>
 <!--End app-folders-container-->
 
+<!-- the search area outside of the phone shell -->
 <div class="row">
-
     <div class="column">
-
         <h1>Search</h1>
-
         <form id="addForm" ng-submit="insert()">
-
             <div class="row">
-
                 <div class="column">
                     <span class="spanLabel">To search iClout enter your search word below...</span>
                 </div>
-
             </div>
-
             <div class="row">
-
                 <div class="large-10 columns">
-
                     <input
                         type="text"
                         name="item"
                         ng-model="item"
                         ng-trim="false"
                         placeholder="Item">
-
                 </div>
-
                 <div class="large-2 columns">
                     <div class="show-for-large-up">
                         <button
@@ -174,15 +109,9 @@
                                 ><i class="fa fa-search"></i> Search</button>
                     </div>
                 </div>
-                
-
             </div>
-
         </form>
-
     </div>
-
 </div>
-
 </body>
 </html>

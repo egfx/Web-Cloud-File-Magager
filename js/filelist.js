@@ -2,20 +2,23 @@
 
 angular.module('CloutFileManager', [])
 .value('pointer', 0)
+.config(['$locationProvider', function($locationProvider){
+    $locationProvider.html5Mode(true);
+}])
+.filter('look', function() {
+  return function(arr, start, end) {
+    return (arr || []).slice(start, end);
+  };
+})
+.factory('data', ['$log', function($log){
+    return {
+        //
+    }
+}])
 .controller('FileListController', ['$scope', '$http', '$log', 'pointer', function($scope, $http, $log, pointer) {
 
+    // syncs to app folder IDs
     $scope.getItem = ['uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'dies', 'once', 'dose', 'trece', 'catorce', 'quince', 'diesiseis'];
-
-    // change the hash in the URL, press ENTER and reload to change directories...
-    // TODO: Link directories with clicks
-    pointer = (Number.isInteger(location.hash)) ? pointer : location.hash.split('#')[1];
-
-    if(history.pushState) {
-        history.pushState(null, null, '#' + pointer);
-    }
-    else {
-        location.hash = '#' + pointer;
-    }
 
     var urlSelect = '.../../src/parser.php?pointer=' + pointer;
 
@@ -23,24 +26,31 @@ angular.module('CloutFileManager', [])
         $http.get(urlSelect)
             .success(function(data) {  
                 if (data.items){
-                    $scope.items = data.items;
-                    console.log($scope.items);
-                }   
-                if (data.types){
-                    $scope.types = data.types;
-                    $scope.type = $scope.types[0].id;
-                }
+                    $scope.items = data.items,
+                        $scope.items.concat($scope.items.splice(0,2));
+                    
+                     // Arrange items in cell grid 
+                    $scope.rows = [];
+                    var size = Math.ceil($scope.items.length /3);
+                    for (var i=0; i<$scope.items.length; i+=size) {
+                        var chunk = $scope.items.slice(i,i+size);
+                        $scope.rows.push(chunk);
+                        if(i == 0){
+                            var extra = angular.copy($scope.rows[0][3]);
+                            $scope.rows[0] = $scope.rows[0].slice(0,3);
+                        }
+                    }; 
+                    $scope.rows.push(new Array(extra));
+                
+                } // END Data Call
             })
             .error(function(data, status, headers, config) {
                 throw new Error('Something went wrong with the file manager parsing!');
             });
     };
     
+    // execute
     $scope.select();
-
-    $scope.gohome = function(){
-        //TODO: Go back to root directory
-    }
 
     $scope.goToDir = function(dir){
         //TODO: Go to specified directory
@@ -51,7 +61,7 @@ angular.module('CloutFileManager', [])
     return {
         restrict: 'A',
         link: function (scope, element, attr){
-            element.bind('mouseover', function(evt){
+            element.bind('mouseenter', function(evt){
                 var $el = angular.element(evt.target).find('.hint-' + attr.direction);
                 if($el.length){
                     angular.element($el).addClass('hint-persist');
@@ -65,7 +75,7 @@ angular.module('CloutFileManager', [])
             });
 
             angular.element('.app-folders-container').on('mouseleave', function(evt){
-                angular.element(evt.target).find('.hint-' + attr.direction).removeClass('hint-persist');     
+                angular.element('.app-folders-container').find('.hint-' + attr.direction).removeClass('hint-persist');
             });
         }
     }

@@ -50,8 +50,9 @@ class Filelist {
 			return 'directory';
 		} elseif (strlen(trim($extension)) > 0){
 			switch ($extension){
+			    case 'png':
 			    case 'jpg':
-			        return 'jpg';
+			        return 'image';
 			        break;
 			    case 'json':
 			        return 'json';
