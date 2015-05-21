@@ -32,7 +32,7 @@ angular.module('CloutFileManager', [])
                     }; 
                     $scope.rows.push(new Array(extra));
                 
-                } // END Data Call
+                }
             })
             .error(function(data, status, headers, config) {
                 throw new Error('Something went wrong with the file manager parsing!');
