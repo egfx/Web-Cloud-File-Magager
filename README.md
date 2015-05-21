@@ -9,13 +9,9 @@ Directions:
 
 3.) Navigate to http://localhost/CloutFileMgr
 
--- To traverse directory contents --
+-- To traverse directory contents and to look at files --
 
-1.) Change the hash number at the top of the URL
-
-2.) Press the Enter key
-
-3.) Click the Refresh button
+1.)  Just click the corrosponding file or directory icon
 
 -- To run the unit tests --
 
