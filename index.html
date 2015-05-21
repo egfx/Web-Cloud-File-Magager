@@ -52,7 +52,7 @@
                     <a href="{{path.pathname}}" target="_self" ng-click="gohome()"><img class="app-icon" ng-src="images/icon-directory.png"></a>
                     <p><b>HOME</b></p>
                 </div>
-                <div ng-repeat="item in row" tooltip data-direction="top" class="folder" id="getItem[$index]">
+                <div ng-repeat="item in row | filter:query" tooltip data-direction="top" class="folder" id="getItem[$index]">
                     <div ng-click="goToDir(item, $index)" ng-if="item.extension == 'directory'"><img class="app-icon" ng-src="images/icon-{{item.extension}}.png"><span data-hint="{{item.file}}" class="hint-top"></span></div>
                     <div ng-if="item.extension != 'directory'" data-test="{{item.extension}}"><a href="{{currentpath}}{{item.file}}"><img class="app-icon" ng-src="images/icon-{{item.extension}}.png"><span data-hint="{{item.file}}" class="hint-top"></span></a></div>
                 </div>
@@ -81,6 +81,7 @@
             <div class="row">
                 <div class="large-10 columns">
                     <input
+                        ng-model="query"
                         type="text"
                         name="item"
                         ng-model="item"
