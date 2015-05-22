@@ -4,7 +4,7 @@ include __DIR__ . '/../src/filelist.php';
 
 try {
 
-	$filelist = new Filelist();
+    $filelist = new Filelist();
 
     $pointer = intval($_GET['pointer']);
     $path = $_GET['path'];
