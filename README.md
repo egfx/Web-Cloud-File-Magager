@@ -10,8 +10,8 @@ PHP:
 - Autoloader
 
 AngularJS and Javascript:
-- jQuery plugin integration
 - AngularJS module pattern integration
+- jQuery plugin integration
 
 Responsive UI:
 - Foundation Framework integration
