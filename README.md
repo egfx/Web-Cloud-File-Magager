@@ -2,7 +2,7 @@ Web Cloud File Manager
 
 Web Cloud File Manager is a responsive boilerplate showcase of an MVC architecture that can be used to bootstrap your own application in PHP and AngularJS.
 
-This neat little sample app consumes it's own repository and displays it back to the end user.
+This simple sample app consumes it's own repository and displays it back to the end user.
 
 PHP:
 - Model layer
