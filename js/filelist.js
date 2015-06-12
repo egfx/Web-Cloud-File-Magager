@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('CloutFileManager', [])
+angular.module('CloudFileManager', [])
 .value('pointer', 0)
 .controller('FileListController', ['$scope', '$http', '$log', '$filter', 'pointer', function($scope, $http, $log, $filter, pointer) {
 
