@@ -9,7 +9,7 @@ PHP:
 - Autoloader
 
 Responsive UI:
-- View Layer
+- View layer
 - Foundation Framework integration
 
 AngularJS and Javascript:
