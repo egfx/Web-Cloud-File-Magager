@@ -8,12 +8,14 @@ PHP:
 - AJAX service layer
 - Autoloader
 
+Responsive UI:
+- View Layer
+- Foundation Framework integration
+
 AngularJS and Javascript:
+- Controller layer
 - AngularJS module pattern integration
 - jQuery plugin integration
-
-Responsive UI:
-- Foundation Framework integration
 
 Testing:
 - PHPunit installer included
