@@ -5,7 +5,7 @@ This simple sample app consumes it's own repository and displays it back to the 
 
 PHP:
 - Model layer
-- AJAX service layer
+- AJAX services
 - Autoloader
 
 Responsive UI:
@@ -14,12 +14,13 @@ Responsive UI:
 
 AngularJS and Javascript:
 - Controller layer
-- AngularJS module pattern integration
+- AngularJS module pattern
+- Custom Directive
 - jQuery plugin integration
 
 Testing:
 - PHPunit installer included
-- It also includes a full suite of PHP unit tests.
+- It also includes a full suite of hand written PHP unit tests.
 
 Directions:
 
