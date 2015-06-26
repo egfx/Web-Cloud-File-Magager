@@ -1,7 +1,6 @@
-Web Cloud File Manager is a minimilist MVC boilerplate built in Angular and PHP.
+Web Cloud File Manager is an MVC demo app built in Angular JS and PHP.
 
 This simple sample app consumes it's own repository and displays it back to the end user in a sleak and responsive user interface.
-
 
 PHP:
 - Model layer
