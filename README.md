@@ -18,8 +18,8 @@ AngularJS and Javascript:
 - jQuery plugin integration
 
 Testing:
+- A full suite of hand written PHP unit tests
 - PHPunit installer included
-- It also includes a full suite of hand written PHP unit tests.
 
 Directions:
 
